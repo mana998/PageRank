@@ -26,7 +26,7 @@ Sx = [1/graphSize] * graphSize
 #the initial approximation of the ranking vector
 xk1 = [1/graphSize] * graphSize
 #Outer loop The next step is to make a loop where each step computes xk+1 from xk. Start by constructing a new variable to hold xk+1
-for i in range(1000): #
+for i in range(10000): #
     Dxk = 0
     #xk1 = x0
     for index in dangling:
@@ -37,16 +37,18 @@ for i in range(1000): #
     for node in range(len(G.adj)):
         #print(reverseG.adj[str(i)])
         rank = 0
+        #print('node', node)
         for adjecent in (reverseG.adj[str(node)]):
-            #print(adjecent)
+            #print('adjecent',adjecent)
+            #print('value',branching[int(adjecent)])
             #print(len(reverseG.adj[str(adjecent)]))
-            rank += 1/branching[int(adjecent)]
+            rank += (1/branching[int(adjecent)])*xk1[int(adjecent)]
             #rank += 1/len(reverseG.adj[str(adjecent)])
             #print('RANK',rank)
         Axk.append(rank)
         #print('ORANK',rank)
     for index in range(len(xk1)):
-        xk1[index] = (1-m)*Axk[index] + (1-m)*Dxk +m * Sx[index]
+        xk1[index] = (1-m)*Axk[index] + (1-m)*Dxk + m*Sx[index]
         #xk+1 = (1-m)Axk + (1-m)Dxk +mSxk 
 d = {}
 sum = 0
@@ -60,7 +62,7 @@ arr1 = []
 for key in d2:
     print(key, d2[key]) 
     arr1.append(key)
-pr = nx.pagerank(G, 0.15, None, 1000)
+pr = nx.pagerank(G, 0.15, None, 10000)
 pr = dict(sorted(pr.items(), key=lambda item: item[1], reverse=True))
 print('\n')
 arr2 = []
