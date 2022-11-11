@@ -21,15 +21,15 @@ rank = [0] * graphSize
 currentNode = random.randint(0, graphSize - 1)
 rank[currentNode] += 1
 #Outer loop - how many steps to make
-for i in range(10000): #
-    if (currentNode in dangling or random.uniform(0, 1) <= m):
+for i in range(10000000): #
+    if ((int(currentNode) in dangling) or (random.uniform(0, 1) <= m)):
         currentNode = random.randint(0, graphSize - 1)
     else:
         #get list of adjecent nodes
         key = list(G.adj[str(currentNode)].keys())
         #select random one
-        currentNode = random.randint(0, len(key)-1)
-    rank[currentNode] += 1
+        currentNode = key[random.randint(0, len(key)-1)]
+    rank[int(currentNode)] += 1
     
 d = {}
 
