@@ -1,7 +1,7 @@
 import networkx as nx
 
 #read the file
-fh=open('./PageRankExampleData/medium.txt', 'rb')
+fh=open('./PageRankExampleData/p2p-Gnutella08-mod.txt', 'rb')
 G=nx.read_adjlist(fh, create_using=nx.DiGraph())
 fh.close()
 
@@ -26,7 +26,7 @@ Sx = [1/graphSize] * graphSize
 #the initial approximation of the ranking vector
 xk1 = [1/graphSize] * graphSize
 #Outer loop The next step is to make a loop where each step computes xk+1 from xk. Start by constructing a new variable to hold xk+1
-for i in range(10000):
+for i in range(10):
     #calculate Dx matrix
     Dxk = 0
     for index in dangling:
