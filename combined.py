@@ -1,3 +1,4 @@
+#Marianna Zimmermannova, Cristian Ou, Costel-Gabriel Nicutari
 import networkx as nx
 import random
 
